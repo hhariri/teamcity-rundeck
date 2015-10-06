@@ -16,6 +16,8 @@ import kotlin.test.assertNotEquals
  */
 public class RunDeckAPITests {
 
+    // These tests need a local instance of RunDeck running and the corresponding job ID/token
+    // TODO: Extra these into a separate file
     val host = "http://localhost:4440"
     val token = "mHQ5M054XM3XSiZoQ9MfOwb6KVECSNy5"
     val jobId = "ce8c3513-c950-4fed-a855-d974395bd8f8"
