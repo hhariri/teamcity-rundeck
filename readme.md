@@ -9,7 +9,9 @@ TeamCity RunDeck plugin to run RunDeck jobs
 
 Clone and run 
 
-```mvn package
+  mvn package
+
+copy rundeck.zip to plugins folder on your TeamCity server. 
 
 ###Configuration
 
