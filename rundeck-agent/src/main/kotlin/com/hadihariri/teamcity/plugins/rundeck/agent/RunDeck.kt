@@ -56,16 +56,16 @@ public object RunDeck {
     private fun run(rundeckOptions: RunDeckOptions): Int {
         val rundeckAPI = RunDeckAPI(rundeckOptions.url, rundeckOptions.authToken)
         val execution = rundeckAPI.executeJob(rundeckOptions.jobId, rundeckOptions.jobOptions, rundeckOptions.filters)
-        println(ServiceMessage.asString("RUNDECK", "Starting RunDeck Job ${rundeckOptions.jobId}"))
+        println(ServiceMessage.asString("rundeck", mapOf("text" to "Starting RunDeck Job ${rundeckOptions.jobId}", "status" to "NORMAL")))
         var counter = 0
         var increment: Long = 1
         if (execution.code == 200) {
-            println(ServiceMessage.asString("RUNDECK", "Job ${rundeckOptions.jobId} launched successfully with id ${execution.result}"))
+            println(ServiceMessage.asString("rundeck", mapOf("text" to "Job ${rundeckOptions.jobId} launched successfully with id ${execution.result}", "status" to "NORMAL")))
             if (rundeckOptions.waitFinish) {
                 while (counter < 100){
                     val status = rundeckAPI.jobStatus(execution.result)
                     if (status.code == 200 && status.execCompleted) {
-                        println(ServiceMessage.asString("RUNDECK", "RunDeck Job completed with status ${status.execState}"))
+                        println(ServiceMessage.asString("rundeck", mapOf("text" to "RunDeck Job completed with status ${status.execState}", "status" to "NORMAL")))
                         if (status.execState != "succeeded") {
                             return RUNDECK_FAILED
                         } else {
@@ -77,11 +77,11 @@ public object RunDeck {
                     increment += 1
                 }
             } else {
-                println(ServiceMessage.asString("RUNDECK", "Not waiting for job to finish"))
+                println(ServiceMessage.asString("rundeck", mapOf("text" to "Not waiting for job to finish", "status" to "NORMAL")))
                 return RUNDECK_SUCCEEDED
             }
         }
-        println(ServiceMessage.asString("RUNDECK", "Job launch failed with error ${execution.code}:${execution.result}"))
+        println(ServiceMessage.asString("rundeck", mapOf("text" to "Job launch failed with error ${execution.code}:${execution.result}", "status" to "FAILURE")))
         return RUNDECK_FAILED
     }
 
