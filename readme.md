@@ -7,9 +7,8 @@ TeamCity RunDeck plugin to run RunDeck jobs
 
 ###Installation
 
-Clone and run **mvn package**
-
-copy target\rundeck.zip to plugins folder on your TeamCity server. 
+You can download the plugin from the [TeamCity Server](https://teamcity.jetbrains.com/viewType.html?buildTypeId=TeamCityPluginsByJetBrains_TeamcityRunDeck_Build)
+. Simply download the zip and install it on your TeamCity server.
 
 ###Configuration
 
