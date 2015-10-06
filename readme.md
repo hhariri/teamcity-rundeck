@@ -11,7 +11,7 @@ mvn package
 copy rundeck.zip to plugins folder in TeamCity
 
 ###Configure
-[!configuration](rundeck-config.png)
+![configuration](rundeck-config.png)
 
 ###TODO
 
