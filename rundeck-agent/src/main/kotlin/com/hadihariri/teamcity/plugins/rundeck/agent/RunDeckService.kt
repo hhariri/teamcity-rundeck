@@ -9,6 +9,7 @@ import jetbrains.buildServer.agent.runner.ProgramCommandLine
 import jetbrains.buildServer.runner.JavaRunnerConstants
 import jetbrains.buildServer.util.FileUtil
 import jetbrains.buildServer.util.PropertiesUtil
+import org.apache.xerces.xni.grammars.XMLGrammarPool
 import org.jdom.Element
 import java.io.File
 import java.util.*
@@ -49,7 +50,8 @@ public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServic
         classpath.append(ClasspathUtil.composeClasspath(arrayOf(PropertiesUtil::class.java,
                 Element::class.java, FileUtil::class.java,
                 com.intellij.openapi.util.io.FileUtil::class.java,
-                org.apache.log4j.Logger::class.java),null, null))
+                org.apache.log4j.Logger::class.java,
+                XMLGrammarPool::class.java),null, null))
         return classpath.toString();
 
     }
