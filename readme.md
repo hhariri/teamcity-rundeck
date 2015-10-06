@@ -1,22 +1,22 @@
 ##RunDeck 
 
-A plugin to execute RunDeck jobs and get back status on executions
+TeamCity RunDeck plugin to run RunDeck jobs
 
-Currently supports job options and node filters.
+- Allows to pass options to jobs and filter nodes
+- Currently does not provide output of log executions but it's planned
 
-###To Install
+###Installation
 
-mvn package 
+Clone and run **mvn package**
 
-copy rundeck.zip to plugins folder in TeamCity
+copy target\rundeck.zip to plugins folder on your TeamCity server. 
 
-###Configure
-![configuration](rundeck-config.png)
+###Configuration
+
+![config](rundeck-config.png)
 
 ###TODO
 
-- Output logs
-- Improve service messages
-- Get CI server and tests running. 
-
-
+- Log execution
+- CI server
+- Fix service messages
