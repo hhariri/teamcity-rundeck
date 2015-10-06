@@ -51,7 +51,7 @@
             <div class="completionIconWrapper">
                 <props:multilineProperty linkTitle="Job Options" name="runDeckJobOptions" className="longField" cols="20" rows="5"/>
             </div>
-            <span class="smallNote">Enter each option on its own line, with format name=value</span>
+            <span class="smallNote">Enter each option on its own line, with format: -opt value</span>
         </td>
     </tr>
     <tr>

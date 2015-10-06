@@ -1,11 +1,13 @@
 package com.hadihariri.teamcity.plugins.rundeck.agent
 
+import jetbrains.buildServer.agent.BuildFinishedStatus
 import jetbrains.buildServer.agent.ClasspathUtil
 import jetbrains.buildServer.agent.plugins.beans.PluginDescriptor
 import jetbrains.buildServer.agent.runner.BuildServiceAdapter
 import jetbrains.buildServer.agent.runner.JavaCommandLineBuilder
 import jetbrains.buildServer.agent.runner.JavaRunnerUtil
 import jetbrains.buildServer.agent.runner.ProgramCommandLine
+import jetbrains.buildServer.messages.serviceMessages.ServiceMessage
 import jetbrains.buildServer.runner.JavaRunnerConstants
 import jetbrains.buildServer.util.FileUtil
 import jetbrains.buildServer.util.PropertiesUtil
@@ -18,6 +20,7 @@ import java.util.*
  * Created by hadihariri on 24/09/15.
  */
 public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServiceAdapter() {
+
     override fun beforeProcessStarted() {
         build.buildLogger.progressStarted("Starting RunDeck")
     }
@@ -51,6 +54,7 @@ public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServic
                 Element::class.java, FileUtil::class.java,
                 com.intellij.openapi.util.io.FileUtil::class.java,
                 org.apache.log4j.Logger::class.java,
+                ServiceMessage::class.java,
                 XMLGrammarPool::class.java),null, null))
         return classpath.toString();
 
