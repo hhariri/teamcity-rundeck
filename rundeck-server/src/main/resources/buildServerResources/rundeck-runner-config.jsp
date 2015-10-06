@@ -12,6 +12,28 @@
 
     <tr>
         <th>
+            <label for="runDeckUrl">Rundeck URL:</label>
+        </th>
+        <td>
+            <div class="completionIconWrapper">
+                <props:textProperty name="runDeckUrl" className="longField"/>
+            </div>
+            <span class="smallNote">Rundeck URL:</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="runDeckAPIToken">API Token:</label>
+        </th>
+        <td>
+            <div class="completionIconWrapper">
+                <props:textProperty name="runDeckAPIToken" className="longField"/>
+            </div>
+            <span class="smallNote">API Token</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
             <label for="runDeckJobID">Job Identifier:</label>
         </th>
         <td>
@@ -34,11 +56,11 @@
     </tr>
     <tr>
         <th>
-            <label for="runDeckNodeFilter">Job Options:</label>
+            <label for="runDeckNodeFilter">Node Filter</label>
         </th>
         <td>
             <div class="completionIconWrapper">
-                <props:multilineProperty linkTitle="Job Options" name="runDeckNodeFilter" className="longField" cols="20" rows="5"/>
+                <props:multilineProperty linkTitle="Filters" name="runDeckNodeFilter" className="longField" cols="20" rows="5"/>
             </div>
             <span class="smallNote">Enter each node on its own line</span>
         </td>
@@ -46,18 +68,7 @@
 
     <tr>
         <th>
-            <label for="runDeckWaitForFinish">Job Options:</label>
-        </th>
-        <td>
-            <div class="completionIconWrapper">
-                <props:checkboxProperty name="runDeckWaitForFinish" className="checkboxField"/>
-            </div>
-            <span class="smallNote">Wait for RunDeck to finish</span>
-        </td>
-    </tr>
-    <tr>
-        <th>
-            <label for="runDeckIncludeOutput">Job Options:</label>
+            <label for="runDeckIncludeOutput">Include job output in log:</label>
         </th>
         <td>
             <div class="completionIconWrapper">
@@ -68,13 +79,24 @@
     </tr>
     <tr>
         <th>
-            <label for="runDeckFailBuild">Job Options:</label>
+            <label for="runDeckFailBuild">Fail build if job fails:</label>
         </th>
         <td>
             <div class="completionIconWrapper">
                 <props:checkboxProperty name="runDeckFailBuild" className="checkboxField"/>
             </div>
             <span class="smallNote">Make the build fail</span>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="runDeckWaitForJob">Wait for job to finish:</label>
+        </th>
+        <td>
+            <div class="completionIconWrapper">
+                <props:checkboxProperty name="runDeckWaitForJob" className="checkboxField"/>
+            </div>
+            <span class="smallNote">Wait until the job has finished. Please note that if this is not checked, build won't fail if job fails</span>
         </td>
     </tr>
 

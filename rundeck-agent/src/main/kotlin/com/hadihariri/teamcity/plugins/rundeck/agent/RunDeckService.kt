@@ -1,12 +1,17 @@
 package com.hadihariri.teamcity.plugins.rundeck.agent
 
+import jetbrains.buildServer.agent.ClasspathUtil
 import jetbrains.buildServer.agent.plugins.beans.PluginDescriptor
 import jetbrains.buildServer.agent.runner.BuildServiceAdapter
 import jetbrains.buildServer.agent.runner.JavaCommandLineBuilder
 import jetbrains.buildServer.agent.runner.JavaRunnerUtil
 import jetbrains.buildServer.agent.runner.ProgramCommandLine
 import jetbrains.buildServer.runner.JavaRunnerConstants
+import jetbrains.buildServer.util.FileUtil
+import jetbrains.buildServer.util.PropertiesUtil
+import org.jdom.Element
 import java.io.File
+import java.util.*
 
 /**
  * Created by hadihariri on 24/09/15.
@@ -23,9 +28,9 @@ public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServic
         commandLine.setWorkingDir(workingDirectory.absolutePath)
         commandLine.setClassPath(getClasspath());
         commandLine.setEnvVariables(runnerContext.buildParameters.environmentVariables)
-        commandLine.setJvmAjetbrrgs(JavaRunnerUtil.extractJvmArgs(runnerParameters))
+        commandLine.setJvmArgs(JavaRunnerUtil.extractJvmArgs(runnerParameters))
         commandLine.setMainClass("com.hadihariri.teamcity.plugins.rundeck.agent.RunDeck")
-
+        commandLine.setProgramArgs(listOf(buildParameters.systemProperties["teamcity.runner.properties.file"]))
         return commandLine.build()
     }
 
@@ -41,6 +46,10 @@ public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServic
                 classpath.append(separator);
             }
         }
+        classpath.append(ClasspathUtil.composeClasspath(arrayOf(PropertiesUtil::class.java,
+                Element::class.java, FileUtil::class.java,
+                com.intellij.openapi.util.io.FileUtil::class.java,
+                org.apache.log4j.Logger::class.java),null, null))
         return classpath.toString();
 
     }
