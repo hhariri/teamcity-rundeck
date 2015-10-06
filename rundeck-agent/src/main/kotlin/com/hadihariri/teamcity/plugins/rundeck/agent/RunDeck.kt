@@ -57,8 +57,7 @@ public object RunDeck {
         val rundeckAPI = RunDeckAPI(rundeckOptions.url, rundeckOptions.authToken)
         val execution = rundeckAPI.executeJob(rundeckOptions.jobId, rundeckOptions.jobOptions, rundeckOptions.filters)
         println(ServiceMessage.asString("rundeck", mapOf("text" to "Starting RunDeck Job ${rundeckOptions.jobId}", "status" to "NORMAL")))
-        var counter = 0
-        var increment: Long = 1
+        var counter: Long = 0
         if (execution.code == 200) {
             println(ServiceMessage.asString("rundeck", mapOf("text" to "Job ${rundeckOptions.jobId} launched successfully with id ${execution.result}", "status" to "NORMAL")))
             if (rundeckOptions.waitFinish) {
@@ -72,9 +71,8 @@ public object RunDeck {
                             return RUNDECK_SUCCEEDED
                         }
                     }
-                    Thread.sleep(5000 * increment)
                     counter += 1
-                    increment += 1
+                    Thread.sleep((5000*counter))
                 }
             } else {
                 println(ServiceMessage.asString("rundeck", mapOf("text" to "Not waiting for job to finish", "status" to "NORMAL")))
