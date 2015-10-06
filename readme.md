@@ -17,5 +17,4 @@ You can download the plugin from the [TeamCity Server](https://teamcity.jetbrain
 ###TODO
 
 - Log execution
-- CI server
 - Fix service messages
