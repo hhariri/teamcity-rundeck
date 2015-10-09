@@ -18,3 +18,8 @@ You can download the plugin from the [TeamCity Server](https://teamcity.jetbrain
 
 - Log execution
 - Fix service messages
+
+
+###License
+
+MIT. 
