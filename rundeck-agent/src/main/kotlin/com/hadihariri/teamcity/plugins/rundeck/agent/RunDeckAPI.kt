@@ -78,8 +78,8 @@ public class RunDeckAPI(val host: String, val authToken: String) {
                         element.getChild("hasFailedNodes").text == "true",
                         element.getChild("execState").text,
                         element.getChild("execDuration").text.toLong(),
-                        element.getChild("offset").text.toLong(),
-                        element.getChild("lastModified").text.toLong(),
+                        element.getChild("offset")?.text?.toLong() ?: 0L,
+                        element.getChild("lastModified")?.text?.toLong() ?: 0L,
                         entries,
                         data
                 )
