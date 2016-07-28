@@ -58,11 +58,21 @@ public object RunDeck {
         val execution = rundeckAPI.executeJob(rundeckOptions.jobId, rundeckOptions.jobOptions, rundeckOptions.filters)
         println(ServiceMessage.asString("rundeck", mapOf("text" to "Starting RunDeck Job ${rundeckOptions.jobId}", "status" to "NORMAL")))
         var counter: Long = 0
+        var offset: Long = 0
+        var lastModified: Long = 0
         if (execution.code == 200) {
             println(ServiceMessage.asString("rundeck", mapOf("text" to "Job ${rundeckOptions.jobId} launched successfully with id ${execution.result}", "status" to "NORMAL")))
             if (rundeckOptions.waitFinish) {
-                while (counter < 100){
-                    val status = rundeckAPI.jobStatus(execution.result)
+                while (counter < 100) {
+                    val status = rundeckAPI.jobStatus(execution.result, offset, lastModified)
+                    offset = status.offset
+                    lastModified = status.lastModified
+
+                    if (rundeckOptions.includeOutput) {
+                        for (entry in status.entries) {
+                            println(entry)
+                        }
+                    }
                     if (status.code == 200 && status.execCompleted) {
                         println(ServiceMessage.asString("rundeck", mapOf("text" to "RunDeck Job completed with status ${status.execState}", "status" to "NORMAL")))
                         if (status.execState != "succeeded") {
@@ -71,8 +81,9 @@ public object RunDeck {
                             return RUNDECK_SUCCEEDED
                         }
                     }
+
                     counter += 1
-                    Thread.sleep((5000*counter))
+                    Thread.sleep(5000)
                 }
             } else {
                 println(ServiceMessage.asString("rundeck", mapOf("text" to "Not waiting for job to finish", "status" to "NORMAL")))
