@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hadihariri.teamcity.plugins</groupId>
     <artifactId>rundeck</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <teamcity-version>2022.04</teamcity-version>
