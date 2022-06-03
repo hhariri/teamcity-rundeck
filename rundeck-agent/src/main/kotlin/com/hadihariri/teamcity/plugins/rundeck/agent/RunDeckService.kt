@@ -53,7 +53,7 @@ public class RunDeckService(val pluginDescriptor: PluginDescriptor): BuildServic
         classpath.append(ClasspathUtil.composeClasspath(arrayOf(PropertiesUtil::class.java,
                 Element::class.java, FileUtil::class.java,
                 com.intellij.openapi.util.io.FileUtil::class.java,
-                org.apache.log4j.Logger::class.java,
+                org.apache.logging.log4j.LogManager::class.java,
                 ServiceMessage::class.java,
                 XMLGrammarPool::class.java),null, null))
         return classpath.toString();
