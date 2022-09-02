@@ -1,13 +1,5 @@
 import com.hadihariri.teamcity.plugins.rundeck.agent.RunDeckAPI
-import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.Request
-import jetbrains.buildServer.util.FileUtil
 import org.junit.Test
-import org.xml.sax.InputSource
-import org.yaml.snakeyaml.reader.StreamReader
-import java.io.InputStream
-import java.io.StringReader
-import javax.xml.parsers.SAXParserFactory
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
