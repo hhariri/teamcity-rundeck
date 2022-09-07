@@ -85,6 +85,8 @@ public object RunDeck {
                     counter += 1
                     Thread.sleep(5000)
                 }
+                println(ServiceMessage.asString("rundeck", mapOf("text" to "Job launch failed with wait Timeout error", "status" to "FAILURE")))
+                return RUNDECK_FAILED
             } else {
                 println(ServiceMessage.asString("rundeck", mapOf("text" to "Not waiting for job to finish", "status" to "NORMAL")))
                 return RUNDECK_SUCCEEDED
