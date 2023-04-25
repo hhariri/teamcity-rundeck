@@ -5,7 +5,10 @@ import java.util.*
 /**
  * Created by hadihariri on 05/10/15.
  */
-data class RunDeckExecuteJobResponse(val code: Int, val result: String)
+data class RunDeckExecuteJobResponse(
+        val code: Int,
+        val result: String,
+        val url: String)
 
 data class RunDeckJobStatusResponse(
         val code: Int,
